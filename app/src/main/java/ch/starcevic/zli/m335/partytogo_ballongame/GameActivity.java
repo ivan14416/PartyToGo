@@ -77,11 +77,12 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
                 this.endGame();
             } else if (lastTimeStamp == 0 || System.currentTimeMillis() - lastTimeStamp > 0.001) {
                 double acceleration = Math.sqrt(Math.pow(event.values[0], 2) + Math.pow(event.values[1], 2) + Math.pow(event.values[2], 2));
-                if (acceleration > 15) {
+                while (acceleration > 20) {
                     this.lastTimeStamp = System.currentTimeMillis();
                     imageViewCircle.requestLayout();
                     imageViewCircle.getLayoutParams().height++;
                     imageViewCircle.getLayoutParams().width++;
+                    acceleration -= 30;
                 }
             }
         }
